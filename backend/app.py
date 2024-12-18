@@ -7,6 +7,7 @@ from PIL import Image
 from io import BytesIO
 import matplotlib.pyplot as plt
 import csv
+import time
 
 app = Flask(__name__)
 CORS(app)
@@ -26,7 +27,9 @@ def process_image(canvas_data):
 
         plt.imshow(img_array.reshape(28, 28), cmap='gray')  # Reshape to 28x28 for correct display
         plt.title("Processed Grayscale Image")
-        plt.show()
+        plt.show(block=False)
+        time.sleep(0.5)
+        plt.close()
 
         return img_array.astype(np.float64)
     except Exception as e:
