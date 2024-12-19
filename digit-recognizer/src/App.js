@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Canvas from './Canvas';
 import PredictionPopup from './PredictionPopup';
-import './App.css'; // Import the CSS file for popup styling
+import './App.css';
 
 const App = () => {
   const [prediction, setPrediction] = useState(null);
