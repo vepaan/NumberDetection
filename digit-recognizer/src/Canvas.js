@@ -6,8 +6,13 @@ const Canvas = ({ onSubmit }) => {
   const canvasRef = useRef();
 
   const handleSubmit = () => {
-    const canvasData = canvasRef.current.getDataURL(); 
-    onSubmit(canvasData); 
+    const canvasData = canvasRef.current.getSaveData(); // Get the canvas data as JSON
+    if (!canvasData || JSON.parse(canvasData).lines.length === 0) {
+      alert("Please draw something before submitting.");
+      return;
+    }
+    const base64Data = canvasRef.current.getDataURL(); // Get image data if valid
+    onSubmit(base64Data); 
   };
 
   const clearpicture = () => {
@@ -27,8 +32,8 @@ const Canvas = ({ onSubmit }) => {
         className="drawing-section"
       />
       <div>
-        <button onClick={handleSubmit}>Submit</button>
-        <button onClick={clearpicture}>Clear</button>
+        <button onClick={handleSubmit} className="drawing-button">Submit</button>
+        <button onClick={clearpicture} className="drawing-button">Clear</button>
       </div>
     </div>
   );
