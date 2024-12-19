@@ -32,15 +32,17 @@ const App = () => {
   };
 
   return (
-    <div className='canvas-container'>
-      <Canvas onSubmit={handleSubmit} />
-      {isPopupVisible && (
-        <PredictionPopup
-          prediction={prediction}
-          canvasData={canvasData}
-          closePopup={() => setPopupVisible(false)}
-        />
-      )}
+    <div className='body'>
+      <div className='canvas-container'>
+        <Canvas onSubmit={handleSubmit} />
+        {isPopupVisible && (
+          <PredictionPopup
+            prediction={prediction}
+            canvasData={canvasData}
+            closePopup={() => setPopupVisible(false)}
+          />
+        )}
+      </div>
     </div>
   );
 };

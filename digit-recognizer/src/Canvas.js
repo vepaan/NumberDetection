@@ -23,6 +23,8 @@ const Canvas = ({ onSubmit }) => {
         backgroundColor="#000000"
         canvasWidth={280}
         canvasHeight={280}
+        hideGrid={true}
+        className="drawing-section"
       />
       <div>
         <button onClick={handleSubmit}>Submit</button>

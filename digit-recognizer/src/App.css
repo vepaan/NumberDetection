@@ -73,3 +73,12 @@
   display: flex;
   flex-direction: column;
 }
+
+.drawing-section{
+  border: 3px solid gray;
+  border-radius: 10px;
+}
+
+.body{
+  background-color: white;
+}
