@@ -21,7 +21,7 @@ client = MongoClient(MONGO_URI)
 db = client["finetune"]
 collection = db["finetune_data"]
 
-with open('weights.pkl', 'rb') as f:
+with open('finetuned_weights.pkl', 'rb') as f:
         params = pickle.load(f)
 print('Weights and biases loaded from file.')
 W1, b1, W2, b2 = params['W1'], params['b1'], params['W2'], params['b2']
@@ -93,6 +93,7 @@ def update_label():
     X = process_image(data["canvasData"])
     label_to_save = prediction if data["isCorrect"] else actual_label
     save_image_to_mongo(X, label_to_save)
+    save_image(X, label_to_save)
     return jsonify({"message": "Label updated successfully!"})
 
 if __name__ == "__main__":
