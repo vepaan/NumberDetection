@@ -8,9 +8,18 @@ from io import BytesIO
 import matplotlib.pyplot as plt
 import csv
 import time
+from pymongo import MongoClient
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 CORS(app)
+
+load_dotenv()
+MONGO_URI = os.getenv("MONGO_URI", 'mongodb://localhost:27017/')
+client = MongoClient(MONGO_URI)
+db = client["finetune"]
+collection = db["finetune_data"]
 
 with open('weights.pkl', 'rb') as f:
         params = pickle.load(f)
@@ -25,11 +34,13 @@ def process_image(canvas_data):
         img_array = np.array(img)
         img_array = img_array.reshape(784, 1) / 255.0
 
+        '''
         plt.imshow(img_array.reshape(28, 28), cmap='gray')  # Reshape to 28x28 for correct display
         plt.title("Processed Grayscale Image")
         plt.show(block=False)
         time.sleep(0.5)
         plt.close()
+        '''
 
         return img_array.astype(np.float64)
     except Exception as e:
@@ -46,6 +57,17 @@ def save_image(img_array, label, file_path="../data/finetune.csv"):
         print("Image data successfully saved to finetune.csv.")
     except Exception as e:
         print(f"Error saving image data: {e}")
+
+def save_image_to_mongo(img_array, label):
+    try:
+        document = {
+            'image': img_array.flatten().tolist(),
+            'label': int(label)
+        }
+        collection.insert_one(document)
+        print("Data successfully saved to mongo")
+    except Exception as e:
+        print(f'Error saving data to Mongo: {e}')
 
 
 def make_prediction(X):
@@ -70,7 +92,7 @@ def update_label():
     actual_label = data["actualLabel"]
     X = process_image(data["canvasData"])
     label_to_save = prediction if data["isCorrect"] else actual_label
-    save_image(X, label_to_save)
+    save_image_to_mongo(X, label_to_save)
     return jsonify({"message": "Label updated successfully!"})
 
 if __name__ == "__main__":
