@@ -32,8 +32,7 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Digit Recognizer</h1>
+    <div className='canvas-container'>
       <Canvas onSubmit={handleSubmit} />
       {isPopupVisible && (
         <PredictionPopup
