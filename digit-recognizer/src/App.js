@@ -20,7 +20,9 @@ const App = () => {
       });
 
       const data = await response.json();
-      if (data.prediction) {
+      console.log(data.prediction)
+      if (data.prediction !== undefined && data.prediction !== null) {
+        console.log(data.prediction)
         setPrediction(data.prediction); // Set prediction state
         setPopupVisible(true); // Show the popup
       } else {

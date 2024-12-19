@@ -8,6 +8,7 @@ const PredictionPopup = ({ canvasData, prediction, closePopup }) => {
   // Handle clicking 'Yes'
   const handleYes = () => {
     saveLabel(prediction, true); // Save prediction as correct
+    console.log(prediction);
     closePopup(); // Close the popup
   };
 
@@ -56,7 +57,7 @@ const PredictionPopup = ({ canvasData, prediction, closePopup }) => {
         </div>
 
         {/* Show input for correction if 'No' is selected */}
-        {isCorrect === false && (
+        {isCorrect === false &&(
           <div className="correction-input">
             <label>
               Enter the correct number:
