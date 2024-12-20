@@ -13,7 +13,7 @@ import os
 from dotenv import load_dotenv
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}}) #frontend url
+CORS(app, resources={r"/*": {"origins": "https://digit-reco.vercel.app/"}}, supports_credentials=True) #frontend url
 
 load_dotenv()
 MONGO_URI = os.getenv("MONGO_URI", 'mongodb://localhost:27017/')
@@ -25,6 +25,14 @@ with open('finetuned_weights.pkl', 'rb') as f:
         params = pickle.load(f)
 print('Weights and biases loaded from file.')
 W1, b1, W2, b2 = params['W1'], params['b1'], params['W2'], params['b2']
+
+@app.after_request
+def add_cors_headers(response):
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+    response.headers["Access-Control-Allow-Credentials"] = "true"
+    return response
 
 def process_image(canvas_data):
     try:
@@ -83,8 +91,10 @@ def make_prediction(X):
     print("Prediciton: ", np.argmax(A2, axis=0)[0])
     return np.argmax(A2, axis=0)[0]
 
-@app.route("/predict", methods=["POST"])
+@app.route("/predict", methods=["POST", 'OPTIONS'])
 def predict():
+    if request.method == "OPTIONS":
+        return jsonify({"message": "CORS preflight request successful"}), 200
     data = request.json["canvasData"]
     X = process_image(data)
     prediction = make_prediction(X) 
