@@ -8,7 +8,8 @@ const App = () => {
   const [isPopupVisible, setPopupVisible] = useState(false);
   const [canvasData, setCanvasData] = useState(null); // Store canvas data
 
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+  //const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+  const API_URL = "https://digit-recognizer-nine.vercel.app/";
 
   const handleSubmit = async (canvasData) => {
     setCanvasData(canvasData); // Save canvas data
