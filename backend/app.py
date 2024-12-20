@@ -26,6 +26,7 @@ with open('finetuned_weights.pkl', 'rb') as f:
 print('Weights and biases loaded from file.')
 W1, b1, W2, b2 = params['W1'], params['b1'], params['W2'], params['b2']
 
+
 def process_image(canvas_data):
     try:
         decoded = base64.b64decode(canvas_data.split(",")[1])  # Remove the "data:image/png;base64," part
