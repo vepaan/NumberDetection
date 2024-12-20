@@ -1,6 +1,7 @@
 data/train.csv
 data/test.csv
 backend/.env
+digit-recognizer/.env
 data/finetune.csv
 npm-debug.log*
 yarn-debug.log*
