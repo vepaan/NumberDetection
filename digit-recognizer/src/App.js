@@ -14,7 +14,7 @@ const App = () => {
     setCanvasData(canvasData); // Save canvas data
     try {
       console.log("Sending data:", { canvasData });
-      const response = await fetch("https://digit-reco-backend.vercel.app/predict", { //backend url
+      const response = await fetch("https://digit-reco-backend-eiwupd3i9-visions-projects-ef94ff33.vercel.app/predict", { //backend url
         method: "POST",
         headers: {
           "Content-Type": "application/json",
