@@ -5,7 +5,8 @@ const PredictionPopup = ({ canvasData, prediction, closePopup }) => {
   const [isCorrect, setIsCorrect] = useState(null);
   const [actualLabel, setActualLabel] = useState('');  // Store user input for correction
 
-  const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  //const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const API_BASE_URL = 'http://localhost:8000';
 
   // Handle clicking 'Yes'
   const handleYes = () => {
