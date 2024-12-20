@@ -13,7 +13,7 @@ import os
 from dotenv import load_dotenv
 
 app = Flask(__name__)
-CORS(app, origins=["*"]) #frontend url
+CORS(app, resources={r"/*": {"origins": "*"}}) #frontend url
 
 load_dotenv()
 MONGO_URI = os.getenv("MONGO_URI", 'mongodb://localhost:27017/')
