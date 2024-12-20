@@ -99,6 +99,7 @@ def update_label():
     X = process_image(data["canvasData"])
     label_to_save = prediction if data["isCorrect"] else actual_label
     save_image_to_mongo(X, label_to_save)
+    save_image(X, label_to_save)
     return jsonify({"message": "Label updated successfully!"})
 
 if __name__ == "__main__":
