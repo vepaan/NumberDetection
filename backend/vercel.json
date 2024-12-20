@@ -4,7 +4,14 @@
       { "src": "app.py", "use": "@vercel/python" }
     ],
     "routes": [
-      { "src": "/(.*)", "dest": "app.py" }
+      {
+        "src": "/predict",
+        "dest": "app.py"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/digit-recognizer/build/$1"
+      }
     ]
   }
   
