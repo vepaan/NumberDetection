@@ -8,12 +8,13 @@ const App = () => {
   const [isPopupVisible, setPopupVisible] = useState(false);
   const [canvasData, setCanvasData] = useState(null); // Store canvas data
 
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+  //const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
 
   const handleSubmit = async (canvasData) => {
     setCanvasData(canvasData); // Save canvas data
     try {
-      const response = await fetch(`${API_URL}/predict`, {
+      console.log("Sending data:", { canvasData });
+      const response = await fetch("https://digit-recognizer-nine.vercel.app/predict", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
