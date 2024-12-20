@@ -13,7 +13,7 @@ import os
 from dotenv import load_dotenv
 
 app = Flask(__name__)
-CORS(app, origins=["https://digit-reco-r10r4bciv-visions-projects-ef94ff33.vercel.app"]) #frontend url
+CORS(app, origins=["https://digit-reco.vercel.app"]) #frontend url
 
 load_dotenv()
 MONGO_URI = os.getenv("MONGO_URI", 'mongodb://localhost:27017/')
