@@ -5,6 +5,8 @@ const PredictionPopup = ({ canvasData, prediction, closePopup }) => {
   const [isCorrect, setIsCorrect] = useState(null);
   const [actualLabel, setActualLabel] = useState('');  // Store user input for correction
 
+  const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+
   // Handle clicking 'Yes'
   const handleYes = () => {
     saveLabel(prediction, true); // Save prediction as correct
@@ -35,7 +37,8 @@ const PredictionPopup = ({ canvasData, prediction, closePopup }) => {
   // Save label data (to backend)
   const saveLabel = async (label, correct) => {
     try {
-      await axios.post('http://localhost:8000/update-label', {
+      const apiUrl = `${API_BASE_URL}/update-label`;
+      await axios.post(apiUrl, {
         canvasData: canvasData,
         prediction: prediction,
         actualLabel: label,
