@@ -21,7 +21,7 @@ client = MongoClient(MONGO_URI)
 db = client["finetune"]
 collection = db["finetune_data"]
 
-with open('finetuned_weights.pkl', 'rb') as f:
+with open('./weights/finetuned_weights.pkl', 'rb') as f:
         params = pickle.load(f)
 print('Weights and biases loaded from file.')
 W1, b1, W2, b2 = params['W1'], params['b1'], params['W2'], params['b2']
@@ -72,14 +72,15 @@ def save_image_to_mongo(img_array, label):
 
 def make_prediction(X):
     print(f'X type: {type(X)}, X shape: {X.shape}')
+    print("X: ", X)
     Z1 = W1 @ X + b1
-    print('z1 done')
+    print('z1 done', Z1)
     A1 = np.maximum(Z1, 0) #relu activation
-    print('a1 done')
+    print('a1 done', A1)
     Z2 = W2 @ A1 + b2
-    print('z2 done')
+    print('z2 done', Z2)
     A2 = np.exp(Z2) / np.sum(np.exp(Z2), axis=0)
-    print('a2 done')
+    print('a2 done', A2)
     print("Prediciton: ", np.argmax(A2, axis=0)[0])
     return np.argmax(A2, axis=0)[0]
 
