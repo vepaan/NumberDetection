@@ -13,3 +13,6 @@ __pycache__/
 *.pyo
 env/
 venv/
+.env
+.gitattributes
+.gitignore
