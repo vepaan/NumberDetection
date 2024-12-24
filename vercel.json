@@ -12,16 +12,12 @@
     ],
     "routes": [
       {
-        "src": "/(.*)",
-        "dest": "/app.py"
-      },
-      {
         "src": "/static/(.*)",
         "dest": "/digit-recognizer/build/static/$1"
       },
       {
-        "src": "/",
-        "dest": "/digit-recognizer/build/index.html"
+        "src": "/(.*)",
+        "dest": "/app.py"
       }
     ]
   }

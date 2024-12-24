@@ -98,9 +98,13 @@ def update_label():
     save_image(X, label_to_save)
     return jsonify({"message": "Label updated successfully!"})
 
-@app.route('/')
-def index():
-    return app.send_static_file('index.html')
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(app.static_folder + '/' + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return app.send_static_file('index.html')
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000)
+    app.run()
