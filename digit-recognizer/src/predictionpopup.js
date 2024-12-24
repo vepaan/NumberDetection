@@ -7,7 +7,7 @@ const PredictionPopup = ({ canvasData, prediction, closePopup }) => {
 
   //const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
   //const API_BASE_URL = 'http://localhost:8000';
-  const API_BASE_URL = 'https://numberdetection.onrender.com/';
+  const API_BASE_URL = 'https://numberdetection.onrender.com';
 
   // Handle clicking 'Yes'
   const handleYes = () => {
