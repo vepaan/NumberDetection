@@ -20,7 +20,7 @@
         "dest": "/digit-recognizer/build/static/$1"
       },
       {
-        "src": "/(.*)",
+        "src": "/",
         "dest": "/digit-recognizer/build/index.html"
       }
     ]
