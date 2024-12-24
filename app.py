@@ -72,15 +72,10 @@ def save_image_to_mongo(img_array, label):
 
 def make_prediction(X):
     print(f'X type: {type(X)}, X shape: {X.shape}')
-    print("X: ", X)
     Z1 = W1 @ X + b1
-    print('z1 done', Z1)
     A1 = np.maximum(Z1, 0) #relu activation
-    print('a1 done', A1)
     Z2 = W2 @ A1 + b2
-    print('z2 done', Z2)
     A2 = np.exp(Z2) / np.sum(np.exp(Z2), axis=0)
-    print('a2 done', A2)
     print("Prediciton: ", np.argmax(A2, axis=0)[0])
     return np.argmax(A2, axis=0)[0]
 
