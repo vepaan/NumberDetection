@@ -14,7 +14,8 @@ const App = () => {
     setCanvasData(canvasData); // Save canvas data
     try {
       console.log("Sending data:", { canvasData });
-      const response = await fetch("http://localhost:8000/predict", { //backend url
+      //const response = await fetch("http://localhost:8000/predict", { //backend url
+      const response = await fetch("https://numberdetection.onrender.com/predict", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
