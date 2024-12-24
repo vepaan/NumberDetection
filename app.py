@@ -107,4 +107,5 @@ def serve(path):
         return app.send_static_file('index.html')
 
 if __name__ == "__main__":
-    app.run(port=8000)
+    #app.run(port=8000)
+    app.run()
