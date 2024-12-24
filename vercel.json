@@ -6,7 +6,7 @@
         "use": "@vercel/python"
       },
       {
-        "src": "digit-recognizer/build/*",
+        "src": "digit-recognizer/build/**/*",
         "use": "@vercel/static"
       }
     ],
@@ -17,10 +17,10 @@
       },
       {
         "src": "/static/(.*)",
-        "dest": "/digit-recognizer/build/$1"
+        "dest": "/digit-recognizer/build/static/$1"
       },
       {
-        "src": "/",
+        "src": "/(.*)",
         "dest": "/digit-recognizer/build/index.html"
       }
     ]
