@@ -47,7 +47,7 @@ def process_image(canvas_data):
         print(f"Error processing image: {e}")
         return None
     
-def save_image(img_array, label, file_path="../data/finetune.csv"):
+def save_image(img_array, label, file_path="./data/finetune.csv"):
     img_array = np.insert(img_array.flatten(), 0, label)
     try:
         with open(file_path, mode="a", newline="") as file:
